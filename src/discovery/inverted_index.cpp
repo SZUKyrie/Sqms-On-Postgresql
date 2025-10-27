@@ -350,6 +350,9 @@ bool RangePostingList::SearchAgg(SMLevelAggAndSortEquivlences* src_agg,SMLevelAg
 
 bool RangePostingList::Match(SMLevelPredEquivlences* dst_lpes, SMLevelPredEquivlences* lpes){
     assert(lpes);
+    if(dst_lpes->PeCnt() < lpes->PeCnt()){
+        return false;
+    }
     for(const auto& pe : *lpes){
         for(const auto& attr : pe->GetPredSet()){
             auto key2pe = dst_lpes->GetKey2Pe();

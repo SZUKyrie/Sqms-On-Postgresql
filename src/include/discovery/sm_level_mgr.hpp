@@ -123,6 +123,7 @@ public:
         early_stop_ = lpes->EarlyStop();
         lpe_id_ = lpes->LpeId();
     }
+    int PeCnt(){return level_pe_sets_.size();}
 private:
     SMUnorderedSet<SMPredEquivlence*> level_pe_sets_;
     SMUnorderedMap<SMString,SMPredEquivlence*,SMStringHash> key2pe_;

@@ -1095,7 +1095,7 @@ bool LeafStrategy::Insert(NodeCollector* node_collector){
     
     new (new_node_info) NodeInfo(node_collector->output,
         node_collector->time,node_collector->hsps_pack_size,
-        node_collector->hsps_pack,node_collector->lid_);
+        node_collector->hsps_pack,node_collector->lid_,node_collector->full_json_plan);
     history_map_[input_pair] = new_node_info;
 
     inputs_.resize(0);
@@ -1180,10 +1180,11 @@ bool LeafStrategy::Search(NodeCollector* node_collector){
          */
         node_collector->scan_view_decrease_ = false;
         for(const auto& his : history_map_){
-           //std::cout<<"check scan view decrease: history output:"<<his.second->output_<<", scan output:"<<node_collector->scan_output<<std::endl;
            if(node_collector->scan_output < his.second->output_ 
                 && double(node_collector->scan_output)/his.second->output_ <= truth_ratio){
+                std::cout<<"check scan view decrease: history output:"<<his.second->output_<<", scan output:"<<node_collector->scan_output<<std::endl;
                 node_collector->scan_view_decrease_ = true;
+                std::cout<<"history plan: "<<his.second->plan_<<"\n plan: " << node_collector->full_json_plan<<std::endl;
                 return true;
             }
         }

@@ -669,6 +669,7 @@ public:
     /* total sets for tables */
     LevelTblList* node_tbls_ = nullptr;
     const char * json_sub_plan = nullptr;
+    const char * full_json_plan = nullptr;
     std::vector<std::string> join_type_list;
 
     /*childs and parent of current node*/

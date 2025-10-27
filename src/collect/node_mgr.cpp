@@ -286,6 +286,7 @@ void NodeManager::ComputeTotalNodes(HistorySlowPlanStat* hsps){
     assert(hsps);
     auto node_collector = level_mgr_->GetNodeCollector()[hsps];
     node_collector->json_sub_plan = hsps->canonical_node_json_plan;
+    node_collector->full_json_plan = hsps->json_plan;
     node_collector->time = hsps->actual_total;
     node_collector->output = hsps->actual_rows;
     node_collector->inputs.resize(0);

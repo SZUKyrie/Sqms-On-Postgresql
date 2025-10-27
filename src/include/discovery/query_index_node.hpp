@@ -256,14 +256,16 @@ private:
 private:
     class NodeInfo{
     public:
-        NodeInfo(int out,double t,double sz,const uint8_t* ptr,int lid)
-            :output_(out),time_(t),pack_size_(sz),pack_ptr_(ptr),lid_(lid){}
+        NodeInfo(int out,double t,double sz,const uint8_t* ptr,int lid,const char* plan)
+            :output_(out),time_(t),pack_size_(sz),pack_ptr_(ptr),lid_(lid),plan_(plan){
+        }
         int output_;
         double time_;
         int pack_size_;
         const uint8_t* pack_ptr_;
         int lid_;
         bool effective_ = true;
+        SMString plan_;
     };
 private:
     std::shared_mutex rw_mutex_;

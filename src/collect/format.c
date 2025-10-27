@@ -1151,7 +1151,7 @@ ExplainNode(PlanState *planstate, List *ancestors,
 			startup_ms = 1000.0 * instrument->startup / nloops;
 			total_ms = 1000.0 * instrument->total / nloops;
 			rows = instrument->ntuples / nloops;
-
+			
 			ExplainOpenWorker(n, es);
 			if (es->timing)
 			{

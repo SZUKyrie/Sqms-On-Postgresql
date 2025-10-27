@@ -302,7 +302,6 @@ bool PlanStatFormat::ProcQueryDesc(QueryDesc* qd, MemoryContext oldcxt, bool slo
                 exit(-1);
             }
             auto clear_start = std::chrono::high_resolution_clock::now();
-
             SlowPlanStat *sps= new SlowPlanStat();
             PlanFormatContext* pf_context_1 = new PlanFormatContext();
             auto level_mgr = std::make_shared<LevelManager>(hsps,sps,logger_,"comming");
@@ -322,6 +321,10 @@ bool PlanStatFormat::ProcQueryDesc(QueryDesc* qd, MemoryContext oldcxt, bool slo
                  */
                 node_collector->scan_view_decrease_=false;
                 node_collector->check_scan_view_decrease_ = true;
+                std::cout<<"scan node type: "<<node_collector->type_name<<", output: "<<node_collector->output<<", time: "<<node_collector->time<<std::endl;
+                if(node_collector->output == 0){
+                    continue;
+                }
                 node_collector->scan_output = node_collector->output;
                 node_collector->scan_time = node_collector->time;
                 if(!scan_index->Search(node_collector)){
